@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'mysql',			#数据库名称
         'USER': 'root',       		#名字
         'PASSWORD': 'root',       #密码
-        'HOST': 'localhost',		#可以不写，默认的
+        'HOST': '10.101.192.43',		#可以不写，默认的
         'PORT': '3306'				#可以不写，默认的
     }
 }
