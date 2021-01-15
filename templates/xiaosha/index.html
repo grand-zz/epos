@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>故障列表</title>
+</head>
+<body>
+<table border="1px" width="100%" style="margin: 20px auto;border-collapse: collapse;text-align:center; font-size: 9pt;">
+    <a href="../epos/add">添加记录</a></br>
+{#    品牌<input name="rq1" type="text" value="2021.1.1">#}
+{##}
+{#    <a href="../epos/find/?rq1="+rq1>查找</a>#}
+    <form method="post" action="../xiaosha/">
+        {% csrf_token %}
+        日期<input name="rq1" >
+        <input type="submit"/>
+    </form>
+    <tr>
+        <th>编号</th>
+        <th>日期</th>
+        <th>时间</th>
+        <th>是否消杀</th>
+        <th>值班人员</th>
+        <th>操作</th>
+    </tr>
+    {% for student in students %}
+        <tr>
+            <td align="center">{{ forloop.counter }} </td>
+            <td align="center">{{ student.rq }} </td>
+            <td align="center">{{ student.sj }} </td>
+            <td align="center">{{ student.sfxs }} </td>
+            <td align="center">{{ student.zbry }} </td>
+            <td align="center">
+                <a href="../xiaosha/edit/?id={{ student.id }}">
+                    编辑
+                </a>
+                <a href="../xiaosha/delete/?id={{ student.id }}">
+                    删除
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

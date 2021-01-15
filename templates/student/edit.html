@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>记录编辑</title>
+    <style>
+        form {
+            margin: 20px auto;
+            width: 500px;
+            border: 10px solid #ccc;
+            padding: 20px
+        }
+    </style>
+</head>
+<body>
+<form method="post" action="../edit/">
+    {% csrf_token %}
+    <input type="hidden" name="id" value="{{ student.id }}"/>
+    <table border="1px" width="100%" style="border-collapse: text-align:left; font-size: 9pt;">
+        <tr>
+            <th>处理人</th>
+            <td><input name="clr" value="{{ student.clr }}"></td>
+        </tr>
+        <tr>
+            <th>铺位号</th>
+            <td><input name="pwh" value="{{ student.pwh }}"/></td>
+        </tr>
+        <tr>
+            <th>品牌</th>
+            <td><input name="pp" value="{{ student.pp }}"></td>
+        </tr>
+        <tr>
+            <th>故障类型</th>
+            <td><input name="gzlx" value="{{ student.gzlx }}"/></td>
+        </tr>
+        <tr>
+            <th>日期</th>
+            <td><input name="rq" value="{{ student.rq }}"></td>
+        </tr>
+        <tr>
+            <th>时间</th>
+            <td><input name="sj" value="{{ student.sj }}"/></td>
+        </tr>
+        <tr>
+            <th>描述</th>
+            <td><input name="ms" value="{{ student.ms }}"/></td>
+        </tr>
+        <tr>
+            <th>处理措施</th>
+            <td><input name="clcs" value="{{ student.clcs }}"/></td>
+        </tr>
+        <tr>
+            <th>完成状态</th>
+            <td><input name="wczt" value="{{ student.wczt }}"/></td>
+        </tr>
+        <tr>
+            <th>收银员签名</th>
+            <td><input name="syyqm" value="{{ student.syyqm }}"/></td>
+        </tr>
+        <tr>
+            <th>备注</th>
+            <td><input name="bz" value="{{ student.bz }}"/></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit"/>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

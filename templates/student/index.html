@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>故障列表</title>
+</head>
+<body>
+<table border="1px" width="100%" style="margin: 20px auto;border-collapse: collapse;text-align:center; font-size: 9pt;">
+    <a href="../epos/add">添加记录</a></br>
+{#    品牌<input name="rq1" type="text" value="2021.1.1">#}
+{##}
+{#    <a href="../epos/find/?rq1="+rq1>查找</a>#}
+    <form method="post" action="../epos/">
+        {% csrf_token %}
+        品牌<input name="rq1" >
+        <input type="submit"/>
+    </form>
+    <tr>
+        <th>编号</th>
+        <th>处理人</th>
+        <th>铺位号</th>
+        <th>品牌</th>
+        <th>故障类型</th>
+        <th>日期</th>
+        <th>时间</th>
+        <th>描述</th>
+        <th>处理措施</th>
+        <th>完成状态</th>
+        <th>收银员签名</th>
+        <th>备注</th>
+        <th>操作</th>
+    </tr>
+    {% for student in students %}
+        <tr>
+            <td align="center">{{ forloop.counter }} </td>
+            <td align="center">{{ student.clr }} </td>
+            <td align="center">{{ student.pwh }} </td>
+            <td align="center">{{ student.pp }} </td>
+            <td align="center">{{ student.gzlx }} </td>
+            <td align="center">{{ student.rq }} </td>
+            <td align="center">{{ student.sj }} </td>
+            <td align="center">{{ student.ms }} </td>
+            <td align="center">{{ student.clcs }} </td>
+            <td align="center">{{ student.wczt }} </td>
+            <td align="center">{{ student.syyqm }} </td>
+            <td align="center">{{ student.bz }} </td>
+            <td align="center">
+                <a href="../epos/edit/?id={{ student.id }}">
+                    编辑
+                </a>
+                <a href="../epos/delete/?id={{ student.id }}">
+                    删除
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
