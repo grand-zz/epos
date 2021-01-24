@@ -78,7 +78,7 @@
             <td align="left">{{ student.clcs }} </td>
             <td align="left">{{ student.wczt }} </td>
             <td align="left">{{ student.syyqm }} </td>
-{#            <td align="left">{{ student.bz }} </td>#}
+{#            <td align="left">{% if student.syyqm %} {{ student.syyqm }} {% endif %}</td>#}
             <td align="center">
                 <a href="../epos/edit/?id={{ student.id }}">
                     编辑
