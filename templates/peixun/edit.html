@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/moment.js/2.24.0/moment-with-locales.js"></script>
+   <script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>    <title>记录编辑</title>
+    <style>
+        form {
+            margin: 20px auto;
+            width: 500px;
+            border: 1px solid #ccc;
+            padding: 20px
+        }
+    </style>
+</head>
+<body>
+<form method="post" action="../edit/">
+    {% csrf_token %}
+    <input type="hidden" name="id" value="{{ student.id }}"/>
+    <table class="table table-bordered">
+        <tr>
+            <th>日期</th>
+            <td><input name="rq" type="date" value="{{ student.rq }}"/></td>
+        </tr>
+        <tr>
+            <th>店铺号</th>
+            <td><input name="dph" value="{{ student.dph }}"/></td>
+        </tr>
+        <tr>
+            <th>品牌</th>
+            <td><input name="pp" value="{{ student.pp }}"></td>
+        </tr>
+        <tr>
+            <th>姓名</th>
+            <td><input name="xm" value="{{ student.xm }}"/></td>
+        </tr>
+        <tr>
+            <th>实操分数</th>
+            <td><input name="scfs" value="{{ student.scfs }}"></td>
+        </tr>
+        <tr>
+            <th>线上分数</th>
+            <td><input name="xsfs" value="{{ student.xsfs }}"/></td>
+        </tr>
+        <tr>
+            <th>总分</th>
+            <td><input name="zf" value="{{ student.zf }}"></td>
+        </tr>
+        <tr>
+            <th>备注</th>
+            <td><select class="form-control" name="bz" id="selection_batch">
+                <option value="合格">合格</option>
+                <option value="不合格">不合格</option>
+                <option value="无故未到场">无故未到场</option>
+            </select></td>
+{#            <td><input name="bz" value="{{ student.bz }}"/></td>#}
+        </tr>
+        <tr>
+            <th>培训原因</th>
+            <td><input name="pxyy" value="{{ student.pxyy }}"></td>
+        </tr>
+        <tr>
+            <th>其它备注</th>
+            <td><input name="qtbz" value="{{ student.qtbz }}"/></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit"/>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+{#<script type="text/javascript">#}
+<script type="text/javascript">
+    // 批次号默认选中
+    $('select#selection_batch').find('option').each(
+        function () {
+            if ($(this).val() == '{{ student.bz }}') {
+                $(this).attr("selected", "selected");
+            }
+        }
+    )
+</script>
+{#</script>#}
+</html>

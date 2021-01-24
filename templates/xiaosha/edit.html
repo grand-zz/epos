@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>记录编辑</title>
+    <style>
+        form {
+            margin: 20px auto;
+            width: 500px;
+            border: 10px solid #ccc;
+            padding: 20px
+        }
+    </style>
+</head>
+<body>
+<form method="post" action="../edit/">
+    {% csrf_token %}
+    <input type="hidden" name="id" value="{{ student.id }}"/>
+    <table border="1px" width="100%" style="border-collapse: text-align:left; font-size: 9pt;">
+        <tr>
+            <th>日期</th>
+            <td><input name="rq" value="{{ student.rq }}"></td>
+        </tr>
+        <tr>
+            <th>时间</th>
+            <td><input name="sj" value="{{ student.sj }}"/></td>
+        </tr>
+        <tr>
+            <th>是否消杀</th>
+            <td><input name="sfxs" value="{{ student.sfxs }}"></td>
+        </tr>
+        <tr>
+            <th>值班人员</th>
+            <td><input name="zbry" value="{{ student.zbry }}"/></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit"/>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

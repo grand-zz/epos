@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'g%0_1wdf*rt4x(9q74ktgv_05f#wwga6qx2p9yrfbvdih4kmxw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,10 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'indexxxx.apps.IndexxxxConfig',
     'epos.apps.EposConfig',
     'xiaosha.apps.XiaoshaConfig',
-    'indexxxx.apps.IndexxxxConfig',
+    'shujing.apps.ShujingConfig',
+    'yunyingshang.apps.YunyingshangConfig',
+    'zhuangji.apps.ZhuangjiConfig',
+    'peixun.apps.PeixunConfig',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

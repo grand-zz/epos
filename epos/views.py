@@ -9,41 +9,47 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 # 故障处理记录处理函数
+
+# def index(request):
+#     rq1 = request.POST.get('rq1')
+#     conn = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
+#     if rq1 is None :
+#         # print(rq1)
+#         with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
+#             cursor.execute("SELECT id,clr,pwh,pp,gzlx,rq,sj,ms,clcs,wczt,syyqm,bz FROM b_epos ORDER BY rq,sj")
+#             students = cursor.fetchall()
+#         return render(request, 'student/index.html', {'students': students})
+#     else:
+#         with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
+#             cursor.execute(
+#                 "SELECT id,clr,pwh,pp,gzlx,rq,sj,ms,clcs,wczt,syyqm,bz FROM b_epos where rq =%s  ORDER BY rq,sj",
+#                 [rq1])
+#             students = cursor.fetchall()
+#         return render(request, 'student/index.html', {'students': students})
+
+
 def index(request):
-    rq1 = request.POST.get('rq1')
     conn = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
-    if rq1 is None :
-        # print(rq1)
-        with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
-            cursor.execute("SELECT id,clr,pwh,pp,gzlx,rq,sj,ms,clcs,wczt,syyqm,bz FROM b_epos ORDER BY rq,sj")
-            students = cursor.fetchall()
-        return render(request, 'student/index.html', {'students': students})
-    else:
+    with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
+        cursor.execute("SELECT id,clr,pwh,pp,gzlx,rq,sj,ms,clcs,wczt,syyqm,bz FROM b_epos ORDER BY rq,sj")
+        students = cursor.fetchall()
+    return render(request, 'student/index.html', {'students': students})
+
+
+def find(request):
+    request.encoding = 'utf-8'
+    if 'rq1' in request.GET and request.GET['rq1']:
+        message = '你搜索的内容为: ' + request.GET['rq1']
+        rq1 = request.GET['rq1']
+        conn = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
         with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
             cursor.execute(
-                "SELECT id,clr,pwh,pp,gzlx,rq,sj,ms,clcs,wczt,syyqm,bz FROM b_epos where rq =%s  ORDER BY rq,sj",
-                [rq1])
+                "SELECT id,clr,pwh,pp,gzlx,rq,sj,ms,clcs,wczt,syyqm,bz FROM b_epos where rq =%s  ORDER BY rq,sj", [rq1])
             students = cursor.fetchall()
-        return render(request, 'student/index.html', {'students': students})
-
-# def find(request):
-#     # rq1 = request.GET['rq1']
-#     # rq = request.POST.get("rq1", None)
-#     # print(rq1)
-#     # rq1='2021.1.1'
-#     # if request.method == 'GET':
-#     rq1 = request.POST.get('rq1', '')
-#     conn = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
-#     with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
-#         cursor.execute("SELECT id,clr,pwh,pp,gzlx,rq,sj,ms,clcs,wczt,syyqm,bz FROM b_epos where rq =%s  ORDER BY rq,sj",
-#                        [rq1])
-#         students = cursor.fetchall()
-#     return render(request, 'student/index.html', {'students': students})
-#
-#     # else:
-#     #     rq = request.POST.get("rq1", None)
-#     #     print('post')
-
+            return render(request, 'student/index.html', {'students': students})
+    else:
+        message = '你提交了空表单'
+        return redirect('../')
 
 
 # 学生信息新增处理函数

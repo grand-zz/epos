@@ -20,7 +20,10 @@ admin.autodiscover()
 urlpatterns = [
     #path('admin/', admin.site.urls),
     url(r'^', include('indexxxx.urls')),
-    #url(r'^indexxxx/', include('indexxxx.urls')),
     url(r'^epos/', include('epos.urls')),
-    url(r'^xiaosha/', include('xiaosha.urls'))
+    url(r'^xiaosha/', include('xiaosha.urls')),
+    url(r'^shujing/', include('shujing.urls')),
+    url(r'^yunyingshang/', include('yunyingshang.urls')),
+    url(r'^zhuangji/', include('zhuangji.urls')),
+    url(r'^peixun/', include('peixun.urls'))
 ]

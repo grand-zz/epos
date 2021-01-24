@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <title>记录添加</title>
+    <style>
+        form {
+            margin: 20px auto;
+            width: 500px;
+            border: 1px solid #ccc;
+            padding: 20px
+        }
+    </style>
+</head>
+<body>
+<form method="post" action="../add/">
+    {% csrf_token %}
+    <table class="table table-bordered">
+        <tr>
+            <div class="input-group">
+            <th>日期</th>
+            <td><input name="rq" type="date" required="required"></td>
+            </div>
+        </tr>
+        <tr>
+            <th>店铺号</th>
+            <td><input name="dph" required="required"/></td>
+        </tr>
+        <tr>
+            <th>品牌</th>
+            <td><input name="pp"></td>
+        </tr>
+        <tr>
+            <th>姓名</th>
+            <td><input name="xm"/></td>
+        </tr>
+        <tr>
+            <th>实操分数</th>
+            <td><input name="scfs"></td>
+        </tr>
+        <tr>
+            <th>线上分数</th>
+            <td><input name="xsfs"/></td>
+        </tr>
+        <tr>
+            <th>总分</th>
+            <td><input name="zf"></td>
+        </tr>
+        <tr>
+            <th>备注</th>
+            <td><input name="bz"/></td>
+        </tr>
+        <tr>
+            <th>培训原因</th>
+            <td><input name="pxyy"></td>
+        </tr>
+        <tr>
+            <th>其它备注</th>
+            <td><input name="qtbz"/></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit"/>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

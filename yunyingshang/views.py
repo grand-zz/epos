@@ -10,9 +10,9 @@ from django.shortcuts import render, redirect
 def index(request):
     conn = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
     with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
-        cursor.execute("SELECT id,rq,sj,sfxs,zbry FROM b_xiaosha ORDER BY rq,sj")
+        cursor.execute("SELECT id,xlqk,gzcl,xjr,shr,rq,bz FROM b_yysxj ORDER BY rq")
         students = cursor.fetchall()
-    return render(request, 'xiaosha/index.html', {'students': students})
+    return render(request, 'yunyingshang/index.html', {'students': students})
 
 
 def find(request):
@@ -22,10 +22,10 @@ def find(request):
         conn = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
         with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
             cursor.execute(
-                "SELECT id,rq,sj,sfxs,zbry FROM b_xiaosha where rq =%s  ORDER BY rq,sj",
+                "SELECT id,xlqk,gzcl,xjr,shr,rq,bz FROM b_yysxj where rq =%s  ORDER BY rq",
                 [rq1])
             students = cursor.fetchall()
-            return render(request, 'xiaosha/index.html', {'students': students})
+            return render(request, 'yunyingshang/index.html', {'students': students})
     else:
         return redirect('../')
 
@@ -34,15 +34,17 @@ def find(request):
 # 学生信息新增处理函数
 def add(request):
     if request.method == 'GET':
-        return render(request, 'xiaosha/add.html')
+        return render(request, 'yunyingshang/add.html')
     else:
+        xlqk = request.POST.get('xlqk', '')
+        gzcl = request.POST.get('gzcl', '')
+        xjr = request.POST.get('xjr', '')
+        shr = request.POST.get('shr', '')
         rq = request.POST.get('rq', '')
-        sj = request.POST.get('sj', '')
-        sfxs = request.POST.get('sfxs', '')
-        zbry = request.POST.get('zbry', '')
+        bz = request.POST.get('bz', '')
         conn = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
         with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
-            cursor.execute("INSERT INTO b_xiaosha (rq,sj,sfxs,zbry) values (%s,%s,%s,%s)",[rq, sj, sfxs, zbry])
+            cursor.execute("INSERT INTO b_yysxj (xlqk,gzcl,xjr,shr,rq,bz) values (%s,%s,%s,%s,%s,%s)",[xlqk,gzcl,xjr,shr,rq,bz])
             conn.commit()
         return redirect('../')
 
@@ -53,18 +55,20 @@ def edit(request):
         id = request.GET.get("id")
         conn = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
         with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
-            cursor.execute("SELECT id,rq,sj,sfxs,zbry FROM b_xiaosha where id =%s", [id])
+            cursor.execute("SELECT id,xlqk,gzcl,xjr,shr,rq,bz FROM b_yysxj where id =%s", [id])
             student = cursor.fetchone()
-        return render(request, 'xiaosha/edit.html', {'student': student})
+        return render(request, 'yunyingshang/edit.html', {'student': student})
     else:
         id = request.POST.get('id', '')
+        xlqk = request.POST.get('xlqk', '')
+        gzcl = request.POST.get('gzcl', '')
+        xjr = request.POST.get('xjr', '')
+        shr = request.POST.get('shr', '')
         rq = request.POST.get('rq', '')
-        sj = request.POST.get('sj', '')
-        sfxs = request.POST.get('sfxs', '')
-        zbry = request.POST.get('zbry', '')
+        bz = request.POST.get('bz', '')
         conn = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
         with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
-            cursor.execute("UPDATE b_xiaosha set rq=%s,sj=%s,sfxs=%s,zbry=%s where id =%s", [rq, sj, sfxs, zbry, id])
+            cursor.execute("UPDATE b_yysxj set xlqk=%s,gzcl=%s,xjr=%s,shr=%s,rq=%s,bz=%s where id =%s", [xlqk,gzcl,xjr,shr,rq,bz,id])
             conn.commit()
         return redirect('../')
 
@@ -74,6 +78,6 @@ def delete(request):
     id = request.GET.get("id")
     conn = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
     with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
-        cursor.execute("DELETE FROM b_xiaosha WHERE id =%s", [id])
+        cursor.execute("DELETE FROM b_yysxj WHERE id =%s", [id])
         conn.commit()
     return redirect('../')

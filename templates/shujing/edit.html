@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>记录编辑</title>
+    <style>
+        form {
+            margin: 20px auto;
+            width: 500px;
+            border: 10px solid #ccc;
+            padding: 20px
+        }
+    </style>
+</head>
+<body>
+<form method="post" action="../edit/">
+    {% csrf_token %}
+    <input type="hidden" name="id" value="{{ student.id }}"/>
+    <table border="1px" width="100%" style="border-collapse: text-align:left; font-size: 9pt;">
+        <tr>
+            <th>竖井编号</th>
+            <td><input name="sjbh" value="{{ student.sjbh }}"></td>
+        </tr>
+        <tr>
+            <th>设备线路情况</th>
+            <td><input name="sbxlqk" value="{{ student.sbxlqk }}"/></td>
+        </tr>
+        <tr>
+            <th>设备温度</th>
+            <td><input name="sbwd" value="{{ student.sbwd }}"></td>
+        </tr>
+        <tr>
+            <th>故障处理</th>
+            <td><input name="gzcl" value="{{ student.gzcl }}"/></td>
+        </tr>
+        <tr>
+            <th>巡检人</th>
+            <td><input name="xjr" value="{{ student.xjr }}"></td>
+        </tr>
+        <tr>
+            <th>审核人</th>
+            <td><input name="shr" value="{{ student.shr }}"/></td>
+        </tr>
+        <tr>
+            <th>日期</th>
+            <td><input name="rq" value="{{ student.rq }}"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit"/>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

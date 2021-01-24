@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>记录添加</title>
+    <style>
+        form {
+            margin: 20px auto;
+            width: 500px;
+            border: 10px solid #ccc;
+            padding: 20px
+        }
+    </style>
+</head>
+<body>
+<form method="post" action="../add/">
+    {% csrf_token %}
+    <table border="1px" width="100%" style="border-collapse: text-align:left; font-size: 9pt;">
+        <tr>
+            <th>竖井编号</th>
+            <td><input name="sjbh" required="required"></td>
+        </tr>
+        <tr>
+            <th>设备线路情况</th>
+            <td><input name="sbxlqk" required="required"/></td>
+        </tr>
+        <tr>
+            <th>设备温度</th>
+            <td><input name="sbwd"></td>
+        </tr>
+        <tr>
+            <th>故障处理</th>
+            <td><input name="gzcl"/></td>
+        </tr>
+        <tr>
+            <th>巡检人</th>
+            <td><input name="xjr"/></td>
+        </tr>
+        <tr>
+            <th>审核人</th>
+            <td><input name="shr"></td>
+        </tr>
+        <tr>
+            <th>日期</th>
+            <td><input name="rq"/></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit"/>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
