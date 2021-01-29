@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'yunyingshang.apps.YunyingshangConfig',
     'zhuangji.apps.ZhuangjiConfig',
     'peixun.apps.PeixunConfig',
+    'datapage.apps.DatapageConfig',
 ]
 
 

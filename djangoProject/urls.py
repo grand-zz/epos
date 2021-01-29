@@ -25,5 +25,6 @@ urlpatterns = [
     url(r'^shujing/', include('shujing.urls')),
     url(r'^yunyingshang/', include('yunyingshang.urls')),
     url(r'^zhuangji/', include('zhuangji.urls')),
-    url(r'^peixun/', include('peixun.urls'))
+    url(r'^peixun/', include('peixun.urls')),
+    url(r'datapage/', include('datapage.urls'))
 ]

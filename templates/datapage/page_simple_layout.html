@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Awesome-pyecharts</title>
+            <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+
+    
+</head>
+<body>
+    <style>.box {  }; </style>
+    <div class="box">
+                        <style>
+            .fl-table {
+                margin: 20px;
+                border-radius: 5px;
+                font-size: 12px;
+                border: none;
+                border-collapse: collapse;
+                max-width: 100%;
+                white-space: nowrap;
+                word-break: keep-all;
+            }
+
+            .fl-table th {
+                text-align: left;
+                font-size: 20px;
+            }
+
+            .fl-table tr {
+                display: table-row;
+                vertical-align: inherit;
+                border-color: inherit;
+            }
+
+            .fl-table tr:hover td {
+                background: #00d1b2;
+                color: #F8F8F8;
+            }
+
+            .fl-table td, .fl-table th {
+                border-style: none;
+                border-top: 1px solid #dbdbdb;
+                border-left: 1px solid #dbdbdb;
+                border-bottom: 3px solid #dbdbdb;
+                border-right: 1px solid #dbdbdb;
+                padding: .5em .55em;
+                font-size: 15px;
+            }
+
+            .fl-table td {
+                border-style: none;
+                font-size: 15px;
+                vertical-align: center;
+                border-bottom: 1px solid #dbdbdb;
+                border-left: 1px solid #dbdbdb;
+                border-right: 1px solid #dbdbdb;
+                height: 30px;
+            }
+
+            .fl-table tr:nth-child(even) {
+                background: #F8F8F8;
+            }
+        </style>
+        <div id="4690abcb47ac42028fbaccd3cc61cc57" class="chart-container" style="">
+            <p class="title" style="font-size: 18px; font-weight:bold;" > POS前台收银问题处理汇总<br/><br/>查询日期：2021.01.18--2021.01.24</p>
+            <p class="subtitle" style="font-size: 12px;" > </p>
+            <table class="fl-table">
+    <thead>
+        <tr>
+            <th>铺位号</th>
+            <th>品牌</th>
+            <th>故障类型</th>
+            <th>操作</th>
+            <th>软件</th>
+            <th>硬件</th>
+            <th>其它</th>
+            <th>合计</th>
+            <th>日期</th>
+            <th>描述</th>
+            <th>处理人</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>F1-F03</td>
+            <td>斯凯奇 SKECHERS</td>
+            <td>软件</td>
+            <td>0</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+            <td>2021.01.18</td>
+            <td>软件卡死</td>
+            <td>孟祥波</td>
+        </tr>
+        <tr>
+            <td>F2-B26</td>
+            <td>以纯童装</td>
+            <td>其它</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+            <td>1</td>
+            <td>2021.01.22</td>
+            <td>打印机电源线松动</td>
+            <td>孟祥波</td>
+        </tr>
+        <tr>
+            <td>F2-E06</td>
+            <td>ONLY、VERO MODA、SELECTED、</td>
+            <td>软件</td>
+            <td>0</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+            <td>2021.01.23</td>
+            <td>软件卡死</td>
+            <td>付太恒</td>
+        </tr>
+        <tr>
+            <td>F1-A02</td>
+            <td>费斯南德 FANSNADI</td>
+            <td>操作</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+            <td>2021.01.23</td>
+            <td>不会单边操作</td>
+            <td>付太恒</td>
+        </tr>
+        <tr>
+            <td>F1-D17</td>
+            <td>斐乐 FILA</td>
+            <td>操作</td>
+            <td>1</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+            <td>2021.01.23</td>
+            <td>不会单边操作</td>
+            <td>付太恒</td>
+        </tr>
+        <tr>
+            <td>F1-D25</td>
+            <td>纳维凯尔 NAVIGARE</td>
+            <td>其它</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>1</td>
+            <td>1</td>
+            <td>2021.01.24</td>
+            <td>电子卷核销问题</td>
+            <td>付太恒</td>
+        </tr>
+    </tbody>
+</table>
+        </div>
+
+<br/>                        <style>
+            .fl-table {
+                margin: 20px;
+                border-radius: 5px;
+                font-size: 12px;
+                border: none;
+                border-collapse: collapse;
+                max-width: 100%;
+                white-space: nowrap;
+                word-break: keep-all;
+            }
+
+            .fl-table th {
+                text-align: left;
+                font-size: 20px;
+            }
+
+            .fl-table tr {
+                display: table-row;
+                vertical-align: inherit;
+                border-color: inherit;
+            }
+
+            .fl-table tr:hover td {
+                background: #00d1b2;
+                color: #F8F8F8;
+            }
+
+            .fl-table td, .fl-table th {
+                border-style: none;
+                border-top: 1px solid #dbdbdb;
+                border-left: 1px solid #dbdbdb;
+                border-bottom: 3px solid #dbdbdb;
+                border-right: 1px solid #dbdbdb;
+                padding: .5em .55em;
+                font-size: 15px;
+            }
+
+            .fl-table td {
+                border-style: none;
+                font-size: 15px;
+                vertical-align: center;
+                border-bottom: 1px solid #dbdbdb;
+                border-left: 1px solid #dbdbdb;
+                border-right: 1px solid #dbdbdb;
+                height: 30px;
+            }
+
+            .fl-table tr:nth-child(even) {
+                background: #F8F8F8;
+            }
+        </style>
+        <div id="e24bca71bfc54271b402725c90fb6df5" class="chart-container" style="">
+            <p class="title" style="font-size: 18px; font-weight:bold;" > POS前台收银问题故障类型详细表<br/><br/>查询日期：2021.01.18--2021.01.24</p>
+            <p class="subtitle" style="font-size: 12px;" > </p>
+            <table class="fl-table">
+    <thead>
+        <tr>
+            <th>故障类型</th>
+            <th>描述</th>
+            <th>数量</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>软件</td>
+            <td>软件卡死</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>其它</td>
+            <td>打印机电源线松动</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>操作</td>
+            <td>不会单边操作</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>其它</td>
+            <td>电子卷核销问题</td>
+            <td>1</td>
+        </tr>
+    </tbody>
+</table>
+        </div>
+
+<br/>                <div id="531737e8c2c94a52a6426f23d6e12292" class="chart-container" style="width:900px; height:500px;"></div>
+    <script>
+        var chart_531737e8c2c94a52a6426f23d6e12292 = echarts.init(
+            document.getElementById('531737e8c2c94a52a6426f23d6e12292'), 'white', {renderer: 'canvas'});
+        var option_531737e8c2c94a52a6426f23d6e12292 = {
+    "animation": true,
+    "animationThreshold": 2000,
+    "animationDuration": 1000,
+    "animationEasing": "cubicOut",
+    "animationDelay": 0,
+    "animationDurationUpdate": 300,
+    "animationEasingUpdate": "cubicOut",
+    "animationDelayUpdate": 0,
+    "color": [
+        "#c23531",
+        "#2f4554",
+        "#61a0a8",
+        "#d48265",
+        "#749f83",
+        "#ca8622",
+        "#bda29a",
+        "#6e7074",
+        "#546570",
+        "#c4ccd3",
+        "#f05b72",
+        "#ef5b9c",
+        "#f47920",
+        "#905a3d",
+        "#fab27b",
+        "#2a5caa",
+        "#444693",
+        "#726930",
+        "#b2d235",
+        "#6d8346",
+        "#ac6767",
+        "#1d953f",
+        "#6950a1",
+        "#918597"
+    ],
+    "series": [
+        {
+            "type": "pie",
+            "clockwise": true,
+            "data": [
+                {
+                    "name": "\u8f6f\u4ef6",
+                    "value": 2
+                },
+                {
+                    "name": "\u5176\u5b83",
+                    "value": 2
+                },
+                {
+                    "name": "\u64cd\u4f5c",
+                    "value": 2
+                }
+            ],
+            "radius": [
+                "0%",
+                "75%"
+            ],
+            "center": [
+                "50%",
+                "50%"
+            ],
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8,
+                "formatter": "{b}: {d}%"
+            },
+            "rippleEffect": {
+                "show": true,
+                "brushType": "stroke",
+                "scale": 2.5,
+                "period": 4
+            }
+        }
+    ],
+    "legend": [
+        {
+            "data": [
+                "\u8f6f\u4ef6",
+                "\u5176\u5b83",
+                "\u64cd\u4f5c"
+            ],
+            "selected": {},
+            "show": true,
+            "padding": 5,
+            "itemGap": 10,
+            "itemWidth": 25,
+            "itemHeight": 14
+        }
+    ],
+    "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "triggerOn": "mousemove|click",
+        "axisPointer": {
+            "type": "line"
+        },
+        "showContent": true,
+        "alwaysShowContent": false,
+        "showDelay": 0,
+        "hideDelay": 100,
+        "textStyle": {
+            "fontSize": 14
+        },
+        "borderWidth": 0,
+        "padding": 5
+    },
+    "title": [
+        {
+            "text": "POS\u6536\u94f6\u95ee\u9898\u5904\u7406\u6c47\u603b\n\n\u67e5\u8be2\u65e5\u671f\uff1a2021.01.18--2021.01.24",
+            "padding": 5,
+            "itemGap": 10
+        }
+    ]
+};
+        chart_531737e8c2c94a52a6426f23d6e12292.setOption(option_531737e8c2c94a52a6426f23d6e12292);
+    </script>
+<br/>                <div id="44e735ffbcd44c63a7c0f794fc1f43d6" class="chart-container" style="width:900px; height:500px;"></div>
+    <script>
+        var chart_44e735ffbcd44c63a7c0f794fc1f43d6 = echarts.init(
+            document.getElementById('44e735ffbcd44c63a7c0f794fc1f43d6'), 'white', {renderer: 'canvas'});
+        var option_44e735ffbcd44c63a7c0f794fc1f43d6 = {
+    "animation": true,
+    "animationThreshold": 2000,
+    "animationDuration": 1000,
+    "animationEasing": "cubicOut",
+    "animationDelay": 0,
+    "animationDurationUpdate": 300,
+    "animationEasingUpdate": "cubicOut",
+    "animationDelayUpdate": 0,
+    "color": [
+        "#c23531",
+        "#2f4554",
+        "#61a0a8",
+        "#d48265",
+        "#749f83",
+        "#ca8622",
+        "#bda29a",
+        "#6e7074",
+        "#546570",
+        "#c4ccd3",
+        "#f05b72",
+        "#ef5b9c",
+        "#f47920",
+        "#905a3d",
+        "#fab27b",
+        "#2a5caa",
+        "#444693",
+        "#726930",
+        "#b2d235",
+        "#6d8346",
+        "#ac6767",
+        "#1d953f",
+        "#6950a1",
+        "#918597"
+    ],
+    "series": [
+        {
+            "type": "pie",
+            "clockwise": true,
+            "data": [
+                {
+                    "name": "\u4e0d\u4f1a\u5355\u8fb9\u64cd\u4f5c",
+                    "value": 2
+                }
+            ],
+            "radius": [
+                "0%",
+                "75%"
+            ],
+            "center": [
+                "50%",
+                "50%"
+            ],
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8,
+                "formatter": "{b}: {d}%"
+            },
+            "rippleEffect": {
+                "show": true,
+                "brushType": "stroke",
+                "scale": 2.5,
+                "period": 4
+            }
+        }
+    ],
+    "legend": [
+        {
+            "data": [
+                "\u4e0d\u4f1a\u5355\u8fb9\u64cd\u4f5c"
+            ],
+            "selected": {},
+            "show": true,
+            "padding": 5,
+            "itemGap": 10,
+            "itemWidth": 25,
+            "itemHeight": 14
+        }
+    ],
+    "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "triggerOn": "mousemove|click",
+        "axisPointer": {
+            "type": "line"
+        },
+        "showContent": true,
+        "alwaysShowContent": false,
+        "showDelay": 0,
+        "hideDelay": 100,
+        "textStyle": {
+            "fontSize": 14
+        },
+        "borderWidth": 0,
+        "padding": 5
+    },
+    "title": [
+        {
+            "text": "\u64cd\u4f5c\u7c7b\u95ee\u9898\u5904\u7406\u6c47\u603b\n\n\u67e5\u8be2\u65e5\u671f\uff1a2021.01.18--2021.01.24",
+            "padding": 5,
+            "itemGap": 10
+        }
+    ]
+};
+        chart_44e735ffbcd44c63a7c0f794fc1f43d6.setOption(option_44e735ffbcd44c63a7c0f794fc1f43d6);
+    </script>
+<br/>                <div id="bc5ad647d0f84567936463bd04664f3c" class="chart-container" style="width:900px; height:500px;"></div>
+    <script>
+        var chart_bc5ad647d0f84567936463bd04664f3c = echarts.init(
+            document.getElementById('bc5ad647d0f84567936463bd04664f3c'), 'white', {renderer: 'canvas'});
+        var option_bc5ad647d0f84567936463bd04664f3c = {
+    "animation": true,
+    "animationThreshold": 2000,
+    "animationDuration": 1000,
+    "animationEasing": "cubicOut",
+    "animationDelay": 0,
+    "animationDurationUpdate": 300,
+    "animationEasingUpdate": "cubicOut",
+    "animationDelayUpdate": 0,
+    "color": [
+        "#c23531",
+        "#2f4554",
+        "#61a0a8",
+        "#d48265",
+        "#749f83",
+        "#ca8622",
+        "#bda29a",
+        "#6e7074",
+        "#546570",
+        "#c4ccd3",
+        "#f05b72",
+        "#ef5b9c",
+        "#f47920",
+        "#905a3d",
+        "#fab27b",
+        "#2a5caa",
+        "#444693",
+        "#726930",
+        "#b2d235",
+        "#6d8346",
+        "#ac6767",
+        "#1d953f",
+        "#6950a1",
+        "#918597"
+    ],
+    "series": [
+        {
+            "type": "pie",
+            "clockwise": true,
+            "data": [
+                {
+                    "name": "\u8f6f\u4ef6\u5361\u6b7b",
+                    "value": 2
+                }
+            ],
+            "radius": [
+                "0%",
+                "75%"
+            ],
+            "center": [
+                "50%",
+                "50%"
+            ],
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8,
+                "formatter": "{b}: {d}%"
+            },
+            "rippleEffect": {
+                "show": true,
+                "brushType": "stroke",
+                "scale": 2.5,
+                "period": 4
+            }
+        }
+    ],
+    "legend": [
+        {
+            "data": [
+                "\u8f6f\u4ef6\u5361\u6b7b"
+            ],
+            "selected": {},
+            "show": true,
+            "padding": 5,
+            "itemGap": 10,
+            "itemWidth": 25,
+            "itemHeight": 14
+        }
+    ],
+    "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "triggerOn": "mousemove|click",
+        "axisPointer": {
+            "type": "line"
+        },
+        "showContent": true,
+        "alwaysShowContent": false,
+        "showDelay": 0,
+        "hideDelay": 100,
+        "textStyle": {
+            "fontSize": 14
+        },
+        "borderWidth": 0,
+        "padding": 5
+    },
+    "title": [
+        {
+            "text": "\u8f6f\u4ef6\u7c7b\u95ee\u9898\u5904\u7406\u6c47\u603b\n\n\u67e5\u8be2\u65e5\u671f\uff1a2021.01.18--2021.01.24",
+            "padding": 5,
+            "itemGap": 10
+        }
+    ]
+};
+        chart_bc5ad647d0f84567936463bd04664f3c.setOption(option_bc5ad647d0f84567936463bd04664f3c);
+    </script>
+<br/>                <div id="945eb9e00e5f482889a23173b286b20b" class="chart-container" style="width:900px; height:500px;"></div>
+    <script>
+        var chart_945eb9e00e5f482889a23173b286b20b = echarts.init(
+            document.getElementById('945eb9e00e5f482889a23173b286b20b'), 'white', {renderer: 'canvas'});
+        var option_945eb9e00e5f482889a23173b286b20b = {
+    "animation": true,
+    "animationThreshold": 2000,
+    "animationDuration": 1000,
+    "animationEasing": "cubicOut",
+    "animationDelay": 0,
+    "animationDurationUpdate": 300,
+    "animationEasingUpdate": "cubicOut",
+    "animationDelayUpdate": 0,
+    "color": [
+        "#c23531",
+        "#2f4554",
+        "#61a0a8",
+        "#d48265",
+        "#749f83",
+        "#ca8622",
+        "#bda29a",
+        "#6e7074",
+        "#546570",
+        "#c4ccd3",
+        "#f05b72",
+        "#ef5b9c",
+        "#f47920",
+        "#905a3d",
+        "#fab27b",
+        "#2a5caa",
+        "#444693",
+        "#726930",
+        "#b2d235",
+        "#6d8346",
+        "#ac6767",
+        "#1d953f",
+        "#6950a1",
+        "#918597"
+    ],
+    "series": [
+        {
+            "type": "pie",
+            "clockwise": true,
+            "data": [
+                {
+                    "name": "\u65e0",
+                    "value": 0
+                }
+            ],
+            "radius": [
+                "0%",
+                "75%"
+            ],
+            "center": [
+                "50%",
+                "50%"
+            ],
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8,
+                "formatter": "{b}: {d}%"
+            },
+            "rippleEffect": {
+                "show": true,
+                "brushType": "stroke",
+                "scale": 2.5,
+                "period": 4
+            }
+        }
+    ],
+    "legend": [
+        {
+            "data": [
+                "\u65e0"
+            ],
+            "selected": {},
+            "show": true,
+            "padding": 5,
+            "itemGap": 10,
+            "itemWidth": 25,
+            "itemHeight": 14
+        }
+    ],
+    "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "triggerOn": "mousemove|click",
+        "axisPointer": {
+            "type": "line"
+        },
+        "showContent": true,
+        "alwaysShowContent": false,
+        "showDelay": 0,
+        "hideDelay": 100,
+        "textStyle": {
+            "fontSize": 14
+        },
+        "borderWidth": 0,
+        "padding": 5
+    },
+    "title": [
+        {
+            "text": "\u786c\u4ef6\u7c7b\u95ee\u9898\u5904\u7406\u6c47\u603b\n\n\u67e5\u8be2\u65e5\u671f\uff1a2021.01.18--2021.01.24",
+            "padding": 5,
+            "itemGap": 10
+        }
+    ]
+};
+        chart_945eb9e00e5f482889a23173b286b20b.setOption(option_945eb9e00e5f482889a23173b286b20b);
+    </script>
+<br/>                <div id="f3b44ab1c71f4cdfa94d03779a2e51ab" class="chart-container" style="width:900px; height:500px;"></div>
+    <script>
+        var chart_f3b44ab1c71f4cdfa94d03779a2e51ab = echarts.init(
+            document.getElementById('f3b44ab1c71f4cdfa94d03779a2e51ab'), 'white', {renderer: 'canvas'});
+        var option_f3b44ab1c71f4cdfa94d03779a2e51ab = {
+    "animation": true,
+    "animationThreshold": 2000,
+    "animationDuration": 1000,
+    "animationEasing": "cubicOut",
+    "animationDelay": 0,
+    "animationDurationUpdate": 300,
+    "animationEasingUpdate": "cubicOut",
+    "animationDelayUpdate": 0,
+    "color": [
+        "#c23531",
+        "#2f4554",
+        "#61a0a8",
+        "#d48265",
+        "#749f83",
+        "#ca8622",
+        "#bda29a",
+        "#6e7074",
+        "#546570",
+        "#c4ccd3",
+        "#f05b72",
+        "#ef5b9c",
+        "#f47920",
+        "#905a3d",
+        "#fab27b",
+        "#2a5caa",
+        "#444693",
+        "#726930",
+        "#b2d235",
+        "#6d8346",
+        "#ac6767",
+        "#1d953f",
+        "#6950a1",
+        "#918597"
+    ],
+    "series": [
+        {
+            "type": "pie",
+            "clockwise": true,
+            "data": [
+                {
+                    "name": "\u6253\u5370\u673a\u7535\u6e90\u7ebf\u677e\u52a8",
+                    "value": 2
+                }
+            ],
+            "radius": [
+                "0%",
+                "75%"
+            ],
+            "center": [
+                "50%",
+                "50%"
+            ],
+            "label": {
+                "show": true,
+                "position": "top",
+                "margin": 8,
+                "formatter": "{b}: {d}%"
+            },
+            "rippleEffect": {
+                "show": true,
+                "brushType": "stroke",
+                "scale": 2.5,
+                "period": 4
+            }
+        }
+    ],
+    "legend": [
+        {
+            "data": [
+                "\u6253\u5370\u673a\u7535\u6e90\u7ebf\u677e\u52a8"
+            ],
+            "selected": {},
+            "show": true,
+            "padding": 5,
+            "itemGap": 10,
+            "itemWidth": 25,
+            "itemHeight": 14
+        }
+    ],
+    "tooltip": {
+        "show": true,
+        "trigger": "item",
+        "triggerOn": "mousemove|click",
+        "axisPointer": {
+            "type": "line"
+        },
+        "showContent": true,
+        "alwaysShowContent": false,
+        "showDelay": 0,
+        "hideDelay": 100,
+        "textStyle": {
+            "fontSize": 14
+        },
+        "borderWidth": 0,
+        "padding": 5
+    },
+    "title": [
+        {
+            "text": "\u5176\u5b83\u7c7b\u95ee\u9898\u5904\u7406\u6c47\u603b\n\n\u67e5\u8be2\u65e5\u671f\uff1a2021.01.18--2021.01.24",
+            "padding": 5,
+            "itemGap": 10
+        }
+    ]
+};
+        chart_f3b44ab1c71f4cdfa94d03779a2e51ab.setOption(option_f3b44ab1c71f4cdfa94d03779a2e51ab);
+    </script>
+<br/>                        <style>
+            .fl-table {
+                margin: 20px;
+                border-radius: 5px;
+                font-size: 12px;
+                border: none;
+                border-collapse: collapse;
+                max-width: 100%;
+                white-space: nowrap;
+                word-break: keep-all;
+            }
+
+            .fl-table th {
+                text-align: left;
+                font-size: 20px;
+            }
+
+            .fl-table tr {
+                display: table-row;
+                vertical-align: inherit;
+                border-color: inherit;
+            }
+
+            .fl-table tr:hover td {
+                background: #00d1b2;
+                color: #F8F8F8;
+            }
+
+            .fl-table td, .fl-table th {
+                border-style: none;
+                border-top: 1px solid #dbdbdb;
+                border-left: 1px solid #dbdbdb;
+                border-bottom: 3px solid #dbdbdb;
+                border-right: 1px solid #dbdbdb;
+                padding: .5em .55em;
+                font-size: 15px;
+            }
+
+            .fl-table td {
+                border-style: none;
+                font-size: 15px;
+                vertical-align: center;
+                border-bottom: 1px solid #dbdbdb;
+                border-left: 1px solid #dbdbdb;
+                border-right: 1px solid #dbdbdb;
+                height: 30px;
+            }
+
+            .fl-table tr:nth-child(even) {
+                background: #F8F8F8;
+            }
+        </style>
+        <div id="779798e213374e2d95bd9e9b67ed017a" class="chart-container" style="">
+            <p class="title" style="font-size: 18px; font-weight:bold;" > 科传收银培训考核统计表<br/><br/>培训日期：2021.01.21</p>
+            <p class="subtitle" style="font-size: 12px;" > </p>
+            <table class="fl-table">
+    <thead>
+        <tr>
+            <th>店铺号</th>
+            <th>品牌</th>
+            <th>姓名</th>
+            <th>总分</th>
+            <th>备注</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>F2-A27</td>
+            <td>小黄鸭</td>
+            <td>陈杰</td>
+            <td>65.0</td>
+            <td>合格</td>
+        </tr>
+        <tr>
+            <td>F1-C11</td>
+            <td>CREAZIONI</td>
+            <td>朱喜玲</td>
+            <td>0.0</td>
+            <td>无故未到场</td>
+        </tr>
+        <tr>
+            <td>F1-B-DJ-5</td>
+            <td>NEOSUPREME</td>
+            <td>张侨</td>
+            <td>0.0</td>
+            <td>无故未到场</td>
+        </tr>
+        <tr>
+            <td>F2-B19</td>
+            <td>HOPESHOW</td>
+            <td>周慧丽</td>
+            <td>0.0</td>
+            <td>请假</td>
+        </tr>
+        <tr>
+            <td>F2-F10</td>
+            <td>361°</td>
+            <td>张万豪</td>
+            <td>64.0</td>
+            <td>合格</td>
+        </tr>
+        <tr>
+            <td>F2-D18</td>
+            <td>九牧王</td>
+            <td>王婷婷</td>
+            <td>65.0</td>
+            <td>合格</td>
+        </tr>
+        <tr>
+            <td>F2-F08</td>
+            <td>特步</td>
+            <td>代飞</td>
+            <td>65.0</td>
+            <td>合格</td>
+        </tr>
+    </tbody>
+</table>
+        </div>
+
+<br/>                        <style>
+            .fl-table {
+                margin: 20px;
+                border-radius: 5px;
+                font-size: 12px;
+                border: none;
+                border-collapse: collapse;
+                max-width: 100%;
+                white-space: nowrap;
+                word-break: keep-all;
+            }
+
+            .fl-table th {
+                text-align: left;
+                font-size: 20px;
+            }
+
+            .fl-table tr {
+                display: table-row;
+                vertical-align: inherit;
+                border-color: inherit;
+            }
+
+            .fl-table tr:hover td {
+                background: #00d1b2;
+                color: #F8F8F8;
+            }
+
+            .fl-table td, .fl-table th {
+                border-style: none;
+                border-top: 1px solid #dbdbdb;
+                border-left: 1px solid #dbdbdb;
+                border-bottom: 3px solid #dbdbdb;
+                border-right: 1px solid #dbdbdb;
+                padding: .5em .55em;
+                font-size: 15px;
+            }
+
+            .fl-table td {
+                border-style: none;
+                font-size: 15px;
+                vertical-align: center;
+                border-bottom: 1px solid #dbdbdb;
+                border-left: 1px solid #dbdbdb;
+                border-right: 1px solid #dbdbdb;
+                height: 30px;
+            }
+
+            .fl-table tr:nth-child(even) {
+                background: #F8F8F8;
+            }
+        </style>
+        <div id="3fab4aee492f4bada0392262fb8ae9bb" class="chart-container" style="">
+            <p class="title" style="font-size: 18px; font-weight:bold;" > 下周培训名单<br/><br/>查询日期：2021.01.18--2021.01.24,培训日期：2021.01.21</p>
+            <p class="subtitle" style="font-size: 12px;" > </p>
+            <table class="fl-table">
+    <thead>
+        <tr>
+            <th>店铺号</th>
+            <th>品牌</th>
+            <th>姓名</th>
+            <th>日期</th>
+            <th>类型</th>
+            <th>备注</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>F1-C11</td>
+            <td>CREAZIONI</td>
+            <td>朱喜玲</td>
+            <td>2021.01.21</td>
+            <td>培训不及格&amp;无故未到场</td>
+            <td>0.00</td>
+        </tr>
+        <tr>
+            <td>F1-B-DJ-5</td>
+            <td>NEOSUPREME</td>
+            <td>张侨</td>
+            <td>2021.01.21</td>
+            <td>培训不及格&amp;无故未到场</td>
+            <td>0.00</td>
+        </tr>
+        <tr>
+            <td>F2-B19</td>
+            <td>HOPESHOW</td>
+            <td>周慧丽</td>
+            <td>2021.01.21</td>
+            <td>培训不及格&amp;请假</td>
+            <td>0.00</td>
+        </tr>
+        <tr>
+            <td>F1-A02</td>
+            <td>费斯南德 FANSNADI</td>
+            <td>陈影</td>
+            <td>2021.01.23</td>
+            <td>操作</td>
+            <td>不会单边操作</td>
+        </tr>
+        <tr>
+            <td>F1-D17</td>
+            <td>斐乐 FILA</td>
+            <td>郭朝阳</td>
+            <td>2021.01.23</td>
+            <td>操作</td>
+            <td>不会单边操作</td>
+        </tr>
+    </tbody>
+</table>
+        </div>
+
+<br/>    </div>
+    <script>
+    </script>
+</body>
+</html>
