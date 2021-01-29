@@ -2,16 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+        <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
     <title>Title</title>
 </head>
 <body>
-<form method="get" action="/datapage/chart/">
-    开始日期<input name="rq1" >
-    结束日期<input name="rq2" >
-    培训日期<input name="rq3" >
-    <input type="submit" value="搜索"/>
-</form>
-
-
+<div class="container">
+    <ul class="nav nav-pills">
+        <li role="presentation"><a href="/">Home</a></li>
+        <li role="presentation"><a href="/epos">收银故障</a></li>
+        <li role="presentation"><a href="/xiaosha">消杀记录</a></li>
+        <li role="presentation"><a href="/peixun">培训记录</a></li>
+        <li role="presentation"><a href="/zhuangji">装机记录</a></li>
+        <li role="presentation"><a href="/shujing">竖井巡检</a></li>
+        <li role="presentation"><a href="/yunyingshang">线路巡检</a></li>
+        <li role="presentation" class="active"><a href="/datapage/">报表查询</a></li>
+    </ul>
+</div>
+<div class="page-header">
+    <h1 class="text-center" >POS前台收银问题处理周汇总</h1>
+</div>
+<div class="container">
+    <form method="get" action="/datapage/chart/">
+        <div class="form-group">
+            <label for="exampleInputName2">开始日期</label>
+            <input type="text" name="rq1" class="form-control"  required="required" placeholder="2021.01.01">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputName2">结束日期</label>
+            <input type="text" name="rq2" class="form-control"  required="required" placeholder="2021.01.01">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputName2">培训日期</label>
+            <input type="text" name="rq3" class="form-control"  required="required" placeholder="2021.01.01">
+        </div>
+        <button input type="submit" class="btn btn-default">查询</button>
+    </form>
+</div>>
 </body>
 </html>
