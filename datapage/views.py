@@ -48,15 +48,15 @@ def Pie_base(sql,titl) -> Pie:
     return pie
 
 def page_default_layout(rq1, rq2, rq3):
-    sql1 = '''select pwh as 铺位号,pp as 品牌,gzlx as 故障类型,操作,软件,硬件,其它,操作+软件+硬件+其它 as 合计,rq as 日期,ms as 描述,clr as 处理人 from (select pwh,gzlx,pp,COUNT(if(gzlx='操作',true,null)) as 操作,COUNT(if(gzlx='软件',true,null)) as 软件,COUNT(if(gzlx='硬件',true,null)) as 硬件,COUNT(if(gzlx='其它',true,null)) as 其它,rq,ms,clr from b_epos where rq BETWEEN '%s' and '%s' group by pwh,gzlx,pp,rq,ms,clr) c''' % (
+    sql1 = '''select pwh as 铺位号,pp as 品牌,gzlx as 故障类型,操作,软件,硬件,其它,操作+软件+硬件+其它 as 合计,rq as 日期,ms as 描述,clr as 处理人 from (select pwh,gzlx,pp,COUNT(if(gzlx='操作',true,null)) as 操作,COUNT(if(gzlx='软件',true,null)) as 软件,COUNT(if(gzlx='硬件',true,null)) as 硬件,COUNT(if(gzlx='其它',true,null)) as 其它,rq,ms,clr from b_epos where rq BETWEEN '%s' and '%s' group by pwh,gzlx,pp,rq,ms,clr) c order by rq,pwh''' % (
         rq1, rq2)
     titl1 = "POS前台收银问题处理汇总\n\n查询日期：%s--%s" % (rq1, rq2)
-    sql2 = '''select gzlx as 故障类型,ms as 描述,count(1) as 数量 from b_epos where rq BETWEEN '%s' and '%s' group by gzlx,ms''' % (
+    sql2 = '''select gzlx as 故障类型,ms as 描述,count(1) as 数量 from b_epos where rq BETWEEN '%s' and '%s' group by gzlx,ms order by gzlx  DESC''' % (
         rq1, rq2)
     titl2 = "POS前台收银问题故障类型详细表\n\n查询日期：%s--%s" % (rq1, rq2)
     sql3 = "select dph as 店铺号,pp as 品牌,xm as 姓名,zf as 总分,bz as 备注 from b_peixunjieguo where rq ='%s'" % rq3
     titl3 = "科传收银培训考核统计表\n\n培训日期：%s" % rq3
-    sql4 = "select dph as 店铺号,pp as 品牌,xm as 姓名,rq as 日期,if(bz='合格',bz,CONCAT('培训不及格&',bz)) as 类型,zf as 备注 from b_peixunjieguo where rq ='%s' and bz<>'合格' Union All select pwh,pp,syyqm,rq,gzlx,ms from b_epos where gzlx='操作' and (rq BETWEEN '%s' and '%s')" % (
+    sql4 = "select dph as 店铺号,pp as 品牌,xm as 姓名,rq as 日期,if(bz='合格',bz,CONCAT('培训不及格&',bz)) as 类型,zf as 备注 from b_peixunjieguo where rq ='%s' and bz<>'合格' Union All select pwh,pp,syyqm,rq,gzlx,ms from b_epos where gzlx='操作' and (rq BETWEEN '%s' and '%s') order by 店铺号" % (
     rq3, rq1, rq2)
     titl4 = "下周培训名单\n\n查询日期：%s--%s,培训日期：%s" % (rq1, rq2, rq3)
     sql5 = "select gzlx as 故障类型,count(1) as 数量 from b_epos where rq BETWEEN '%s' and '%s' group by gzlx" % (rq1, rq2)
