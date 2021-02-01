@@ -8,7 +8,7 @@
 #
 # from django.shortcuts import render
 #
-#
+#fdafaa
 #
 # from pyecharts.charts import Bar,Page
 # from pyecharts import options as opts
