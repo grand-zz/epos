@@ -78,16 +78,16 @@ def chart(request):
     titl4 = "下周培训名单\n\n查询日期：%s--%s,培训日期：%s" % (rq1, rq2, rq3)
     sql5 = "select gzlx as 故障类型,count(1) as 数量 from b_epos where rq BETWEEN '%s' and '%s' group by gzlx" % (rq1, rq2)
     titl5 = "POS收银问题处理汇总\n\n查询日期：%s--%s" % (rq1, rq2)
-    sql6 = "select ms as 描述,count(1) as 数量 from b_epos where gzlx='操作' and rq BETWEEN '%s' and '%s' group by gzlx" % (
+    sql6 = "select ms as 描述,count(1) as 数量 from b_epos where gzlx='操作' and rq BETWEEN '%s' and '%s' group by 描述" % (
         rq1, rq2)
     titl6 = "操作类问题处理汇总\n\n查询日期：%s--%s" % (rq1, rq2)
-    sql7 = "select ms as 描述,count(1) as 数量 from b_epos where gzlx='软件' and rq BETWEEN '%s' and '%s' group by gzlx" % (
+    sql7 = "select ms as 描述,count(1) as 数量 from b_epos where gzlx='软件' and rq BETWEEN '%s' and '%s' group by 描述" % (
         rq1, rq2)
     titl7 = "软件类问题处理汇总\n\n查询日期：%s--%s" % (rq1, rq2)
-    sql8 = "select ms as 描述,count(1) as 数量 from b_epos where gzlx='硬件' and rq BETWEEN '%s' and '%s' group by gzlx" % (
+    sql8 = "select ms as 描述,count(1) as 数量 from b_epos where gzlx='硬件' and rq BETWEEN '%s' and '%s' group by 描述" % (
         rq1, rq2)
     titl8 = "硬件类问题处理汇总\n\n查询日期：%s--%s" % (rq1, rq2)
-    sql9 = "select ms as 描述,count(1) as 数量 from b_epos where gzlx='其它' and rq BETWEEN '%s' and '%s' group by gzlx" % (
+    sql9 = "select ms as 描述,count(1) as 数量 from b_epos where gzlx='其它' and rq BETWEEN '%s' and '%s' group by 描述" % (
         rq1, rq2)
     titl9 = "其它类问题处理汇总\n\n查询日期：%s--%s" % (rq1, rq2)
     page = Page()
