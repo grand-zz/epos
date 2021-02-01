@@ -26,7 +26,12 @@ def table_base(sql,titl) -> Table:
     rows=df.values.tolist()
     headers=df.columns.tolist()
     if len(rows) == 0:
+        print(headers)
+        print(rows)
+        headers=['记录','数量']
         rows = [['无', 0]]
+    print(headers)
+    print(rows)
     table.add(headers, rows).set_global_opts(
         title_opts=opts.ComponentTitleOpts(title=titl)
     )
