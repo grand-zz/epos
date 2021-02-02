@@ -27,13 +27,13 @@ engine = create_engine("mysql+pymysql://root:root@10.101.192.43:3306/mysql", enc
 session = sessionmaker(bind=engine)
 sql ='''select ms as 描述,count(1) as 数量 from b_epos where gzlx='软件' and rq BETWEEN '2021.01.18' and '2021.01.24' group by gzlx'''
 df=pd.read_sql(sql, engine )
-print (df.columns.tolist())
-a=df.values.tolist()
 
-print (len(a))
-if len(a)==0:
-    a=[['无',0]]
-print (a)
+rows = df.values.tolist()
+headers = df.columns.tolist()
+
+print(df)
+print(headers)
+print(rows)
 
 
 

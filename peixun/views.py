@@ -2,16 +2,41 @@ from django.shortcuts import render
 # Create your views here.
 import MySQLdb
 from django.shortcuts import render, redirect
-
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+import pandas as pd
 
 # Create your views here.
 
+# def index(request):
+#     conn = MySQLdb.connect(host="10.101.192.43", user="root", passwd="root", db="mysql", charset='utf8')
+#     with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
+#         cursor.execute("SELECT id,rq,dph,pp,xm,scfs,xsfs,zf,bz,pxyy,qtbz FROM b_peixunjieguo ORDER BY rq")
+#         students = cursor.fetchall()
+#         print(students)
+#     return render(request, 'peixun/index.html', {'students': students})
+
 def index(request):
-    conn = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
-    with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
-        cursor.execute("SELECT id,rq,dph,pp,xm,scfs,xsfs,zf,bz,pxyy,qtbz FROM b_peixunjieguo ORDER BY rq")
-        students = cursor.fetchall()
-    return render(request, 'peixun/index.html', {'students': students})
+    engine = create_engine("mysql+pymysql://root:root@10.101.192.43:3306/mysql", encoding="utf-8")
+    session = sessionmaker(bind=engine)
+    sql="SELECT id,rq,dph,pp,xm,scfs,xsfs,zf,bz,pxyy,qtbz FROM b_peixunjieguo ORDER BY rq"
+    # sql= "select gzlx as 故障类型,count(1) as 数量 from b_epos where rq BETWEEN '%s' and '%s' group by gzlx"% (rq1, rq2)
+    students = pd.read_sql(sql, engine)
+    print ('aa')
+    rows=students.as_matrix().tolist()
+    # headers=students.columns.tolist()
+    # if len(rows) == 0:
+    #     rows = [['无', 0]]
+    # print (students)
+    # print (rows)
+    # print (headers)
+    # # return render(request, 'peixun/index.html', {'students': students})
+    # return students
+    print (rows)
+    data = {}
+    data['data'] = rows
+    print (data)
+    return data
 
 
 def find(request):
