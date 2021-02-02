@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 ###
-
+import time
 import MySQLdb
 from django.shortcuts import render, redirect
 
@@ -41,6 +41,7 @@ def find(request):
     if 'rq1' in request.GET and request.GET['rq1']:
         message = '你搜索的内容为: ' + request.GET['rq1']
         rq1 = request.GET['rq1']
+        rq1=time.strftime("%Y.%m.%d",time.strptime(rq1,"%Y-%m-%d"))
         conn = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
         with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
             cursor.execute(
