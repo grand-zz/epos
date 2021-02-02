@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+        <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <title>报表查询</title>
+</head>
+<body>
+<div class="container">
+    <ul class="nav nav-pills">
+        <li role="presentation"><a href="/">Home</a></li>
+        <li role="presentation"><a href="/epos">收银故障</a></li>
+        <li role="presentation"><a href="/xiaosha">消杀记录</a></li>
+        <li role="presentation"><a href="/peixun">培训记录</a></li>
+        <li role="presentation"><a href="/zhuangji">装机记录</a></li>
+        <li role="presentation"><a href="/shujing">竖井巡检</a></li>
+        <li role="presentation"><a href="/yunyingshang">线路巡检</a></li>
+        <li role="presentation" class="active"><a href="/datapage/">报表查询</a></li>
+    </ul>
+</div>
+<div class="page-header">
+    <h1 class="text-center" >报表查询</h1>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <form method="get" action="/datapage/index/">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="zhou" checked>
+                            周汇总
+                        </label>
+                    </div>
+<!--                    <div class="radio">-->
+<!--                        <label>-->
+<!--                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="xun">-->
+<!--                            巡检、消杀、装机-->
+<!--                        </label>-->
+<!--                    </div>-->
+<!--                    <div class="radio">-->
+<!--                        <label>-->
+<!--                            <input type="radio" name="optionsRadios" id="optionsRadios3" value="yue">-->
+<!--                            月汇总-->
+<!--                        </label>-->
+<!--                    </div>-->
+                </ul>
+            </div>
+            <div class="col-sm-3  col-md-3  main">
+                <div class="row placeholders">
+                    <div class="input-group">
+                        <label for="exampleInputName2">开始日期</label><br/>
+                        <input type="date" name="rq1" class="form-control"  required="required" placeholder="2021.01.01"><br/><br/>
+                    </div>
+                    <div class="input-group">
+                        <label for="exampleInputName2">结束日期</label><br/>
+                        <input type="date" name="rq2" class="form-control"  required="required" placeholder="2021.01.01"><br/>
+                    </div>
+<!--                    <div class="input-group">-->
+<!--                        <label for="exampleInputName2">培训日期</label>-->
+<!--                        <input type="date" name="rq3" class="form-control"  required="required" placeholder="2021.01.01">-->
+<!--                    </div>-->
+                    <br/>
+                    <button input type="submit" class="btn btn-default">查询</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
