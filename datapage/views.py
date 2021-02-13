@@ -25,7 +25,7 @@ def table_base(sql,titl) -> Table:
     # for arg in args:
     #     print(arg)
     table = Table()
-    engine = create_engine("mysql+pymysql://root:root@10.101.192.43:3306/mysql", encoding="utf-8")
+    engine = create_engine("mysql+pymysql://root:root@localhost:3306/mysql", encoding="utf-8")
     session = sessionmaker(bind=engine)
     df = pd.read_sql(sql, engine)
     rows=df.values.tolist()
@@ -40,7 +40,7 @@ def table_base(sql,titl) -> Table:
 
 def Pie_base(sql,titl) -> Pie:
     pie = Pie()
-    engine = create_engine("mysql+pymysql://root:root@10.101.192.43:3306/mysql", encoding="utf-8")
+    engine = create_engine("mysql+pymysql://root:root@localhost:3306/mysql", encoding="utf-8")
     session = sessionmaker(bind=engine)
     # sql= "select gzlx as 故障类型,count(1) as 数量 from b_epos where rq BETWEEN '%s' and '%s' group by gzlx"% (rq1, rq2)
     df = pd.read_sql(sql, engine)
