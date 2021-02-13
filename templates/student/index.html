@@ -53,17 +53,12 @@
                 {#border="1px" width="100%" style="margin: 20px auto;border-collapse: collapse;text-align:center; font-size: 9pt;"#}
                 <table class="table table-bordered">
                     <a href="/epos/add">添加记录</a></br>
-
                     <form method="get" action="/epos/find/">
-                        日期<input name="rq1" type="date">
-                        <input type="submit" value="搜索"/>
+                        <label for="exampleInputName2">查询日期：</label>
+                        <input name="rq1" type="date" value={{rq2}}>
+                        <input name="pag" type="hidden">
+                        <button input type="submit" class="btn btn-default btn-sm">查询</button>
                     </form>
-
-                    {#    <form method="post" action="../epos/">#}
-                    {#        {% csrf_token %}#}
-                    {#        日期<input name="rq1" >#}
-                    {#        <input type="submit" value="搜索">#}
-                    {#    </form>#}
                     <tr>
                         <th class="text-center">编号</th>
                         <th class="text-center">处理人</th>
@@ -94,10 +89,10 @@
                         <td align="left">{{ student.syyqm }} </td>
                         {#            <td align="left">{% if student.syyqm %} {{ student.syyqm }} {% endif %}</td>#}
                         <td align="center">
-                            <a href="../epos/edit/?id={{ student.id }}">
+                            <a href="/epos/edit/?id={{ student.id }}">
                                 编辑
                             </a>
-                            <a href="../epos/delete/?id={{ student.id }}">
+                            <a href="/epos/delete/?id={{ student.id }}">
                                 删除
                             </a>
                         </td>
@@ -109,5 +104,22 @@
         </div>
     </div>
 </div>
+<nav aria-label="Page navigation" class="text-right">
+    <ul class="pagination">
+<!--        <li>-->
+<!--            <a href="#" aria-label="Previous">-->
+<!--                <span aria-hidden="true">&laquo;</span>-->
+<!--            </a>-->
+<!--        </li>-->
+        {% for num in page_num %}
+        <li><a href="{{wz}}{{num}}">{{ num }}</a></li>
+        {% endfor %}
+<!--        <li>-->
+<!--            <a href="#" aria-label="Next">-->
+<!--                <span aria-hidden="true">&raquo;</span>-->
+<!--            </a>-->
+<!--        </li>-->
+    </ul>
+</nav>
 </body>
 </html>

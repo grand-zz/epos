@@ -5,6 +5,7 @@ from django.shortcuts import render
 import time
 import MySQLdb
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
 
 
 # Create your views here.
@@ -29,27 +30,60 @@ from django.shortcuts import render, redirect
 
 
 def index(request):
+    request.encoding = 'utf-8'
+    pag = request.GET.get('pag')
+    if pag:
+        pag = int(pag)
+    else:
+        pag = 1
+    rq2=''
     conn = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
     with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
         cursor.execute("SELECT id,clr,pwh,pp,gzlx,rq,sj,ms,clcs,wczt,syyqm,bz FROM b_epos ORDER BY rq,sj")
         students = cursor.fetchall()
-    return render(request, 'student/index.html', {'students': students})
+        p = Paginator(students, 8)
+        students = p.get_page(pag)
+        page_num = p.page_range
+        wz="/epos/?pag="
+    return render(request, 'student/index.html',
+                  {
+                      'students': students,
+                      'wz': wz,
+                      'page_num': page_num,
+                      'rq2': rq2
+                  }
+                  )
 
 
 def find(request):
     request.encoding = 'utf-8'
     if 'rq1' in request.GET and request.GET['rq1']:
-        message = '你搜索的内容为: ' + request.GET['rq1']
-        rq1 = request.GET['rq1']
+        rq1= request.GET['rq1']
+        rq2= request.GET['rq1']
+        pag= request.GET['pag']
+        if pag:
+            pag = int(pag)
+        else:
+            pag = 1
         rq1=time.strftime("%Y.%m.%d",time.strptime(rq1,"%Y-%m-%d"))
         conn = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
         with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
             cursor.execute(
                 "SELECT id,clr,pwh,pp,gzlx,rq,sj,ms,clcs,wczt,syyqm,bz FROM b_epos where rq =%s  ORDER BY rq,sj", [rq1])
             students = cursor.fetchall()
-            return render(request, 'student/index.html', {'students': students})
+            p = Paginator(students, 8)
+            students= p.get_page(pag)
+            wz="/epos/find?rq1="+rq2+"&pag="
+            page_num=p.page_range
+            return render(request, 'student/index.html',
+                          {
+                              'students': students,
+                              'wz':wz,
+                              'page_num':page_num,
+                              'rq2':rq2
+                          }
+                          )
     else:
-        message = '你提交了空表单'
         return redirect('../')
 
 

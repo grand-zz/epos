@@ -46,8 +46,10 @@
                 <table class="table table-bordered">
                     <a href="/shujing/add">添加记录</a></br>
                     <form method="get" action="/shujing/find/">
-                        日期<input name="rq1" type="date" >
-                        <input type="submit" value="搜索"/>
+                        <label for="exampleInputName2">查询日期：</label>
+                        <input name="rq1" type="date" value={{rq2}}>
+                        <input name="pag" type="hidden">
+                        <button input type="submit" class="btn btn-default btn-sm">查询</button>
                     </form>
                     <tr>
                         <th class="text-center">编号</th>
@@ -71,10 +73,10 @@
                         <td align="center">{{ student.shr }} </td>
                         <td align="center">{{ student.rq }} </td>
                         <td align="center">
-                            <a href="../shujing/edit/?id={{ student.id }}">
+                            <a href="/shujing/edit/?id={{ student.id }}">
                                 编辑
                             </a>
-                            <a href="../shujing/delete/?id={{ student.id }}">
+                            <a href="/shujing/delete/?id={{ student.id }}">
                                 删除
                             </a>
                         </td>
@@ -85,5 +87,12 @@
         </div>
     </div>
 </div>
+<nav aria-label="Page navigation" class="text-right">
+    <ul class="pagination">
+        {% for num in page_num %}
+        <li><a href="{{wz}}{{num}}">{{ num }}</a></li>
+        {% endfor %}
+    </ul>
+</nav>
 </body>
 </html>
