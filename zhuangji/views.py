@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 import time
-import MySQLdb
+from pool import SQLPoll
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 
@@ -16,14 +16,13 @@ def index(request):
     else:
         pag = 1
     rq2=''
-    conn = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
-    with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
-        cursor.execute("SELECT id,shh,pp,pwh,azlx,zjsl,azrq,zjry,bz FROM b_zhuangjijilv ORDER BY azrq")
-        students = cursor.fetchall()
-        p = Paginator(students, 10)
-        students = p.get_page(pag)
-        page_num = p.page_range
-        wz="/zhuangji/?pag="
+    sql='SELECT id,shh,pp,pwh,azlx,zjsl,azrq,zjry,bz FROM b_zhuangjijilv ORDER BY azrq'
+    with SQLPoll() as db:
+        students = db.fetch_all(sql, None)
+    p = Paginator(students, 10)
+    students = p.get_page(pag)
+    page_num = p.page_range
+    wz="/zhuangji/?pag="
     return render(request, 'zhuangji/index.html',
                   {
                       'students': students,
@@ -45,24 +44,21 @@ def find(request):
         else:
             pag = 1
         rq1=time.strftime("%Y.%m.%d",time.strptime(rq1,"%Y-%m-%d"))
-        conn = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
-        with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
-            cursor.execute(
-                "SELECT id,shh,pp,pwh,azlx,zjsl,azrq,zjry,bz  FROM b_zhuangjijilv where azrq =%s  ORDER BY azrq",
-                [rq1])
-            students = cursor.fetchall()
-            p = Paginator(students, 10)
-            students= p.get_page(pag)
-            wz="/zhuangji/find?rq1="+rq2+"&pag="
-            page_num=p.page_range
-            return render(request, 'zhuangji/index.html',
-                          {
-                              'students': students,
-                              'wz':wz,
-                              'page_num':page_num,
-                              'rq2': rq2
-                          }
-                          )
+        sql='SELECT id,shh,pp,pwh,azlx,zjsl,azrq,zjry,bz  FROM b_zhuangjijilv where azrq =%s  ORDER BY azrq'
+        with SQLPoll() as db:
+            students = db.fetch_all(sql, rq1)
+        p = Paginator(students, 10)
+        students= p.get_page(pag)
+        wz="/zhuangji/find?rq1="+rq2+"&pag="
+        page_num=p.page_range
+        return render(request, 'zhuangji/index.html',
+                      {
+                          'students': students,
+                          'wz':wz,
+                          'page_num':page_num,
+                          'rq2': rq2
+                      }
+                      )
     else:
         return redirect('../')
 
@@ -81,10 +77,10 @@ def add(request):
         azrq = request.POST.get('azrq', '')
         zjry = request.POST.get('zjry', '')
         bz = request.POST.get('bz', '')
-        conn = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
-        with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
-            cursor.execute("INSERT INTO b_zhuangjijilv (shh,pp,pwh,azlx,zjsl,azrq,zjry,bz) values (%s,%s,%s,%s,%s,%s,%s,%s)",[shh,pp,pwh,azlx,zjsl,azrq,zjry,bz])
-            conn.commit()
+        sql ="INSERT INTO b_zhuangjijilv (shh,pp,pwh,azlx,zjsl,azrq,zjry,bz) values (%s,%s,%s,%s,%s,%s,%s,%s)"
+        args=(shh,pp,pwh,azlx,zjsl,azrq,zjry,bz)
+        with SQLPoll() as db:
+            db.execute(sql, args)
         return redirect('../')
 
 
@@ -92,10 +88,9 @@ def add(request):
 def edit(request):
     if request.method == 'GET':
         id = request.GET.get("id")
-        conn = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
-        with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
-            cursor.execute("SELECT id,shh,pp,pwh,azlx,zjsl,azrq,zjry,bz FROM b_zhuangjijilv where id =%s", [id])
-            student = cursor.fetchone()
+        sql ="SELECT id,shh,pp,pwh,azlx,zjsl,azrq,zjry,bz FROM b_zhuangjijilv where id =%s"
+        with SQLPoll() as db:
+            student = db.fetch_one(sql, id)
         return render(request, 'zhuangji/edit.html', {'student': student})
     else:
         id = request.POST.get('id', '')
@@ -107,18 +102,17 @@ def edit(request):
         azrq = request.POST.get('azrq', '')
         zjry = request.POST.get('zjry', '')
         bz = request.POST.get('bz', '')
-        conn = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
-        with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
-            cursor.execute("UPDATE b_zhuangjijilv set shh=%s,pp=%s,pwh=%s,azlx=%s,zjsl=%s,azrq=%s,zjry=%s,bz=%s where id =%s", [shh, pp, pwh, azlx, zjsl, azrq, zjry, bz, id])
-            conn.commit()
+        sql ="UPDATE b_zhuangjijilv set shh=%s,pp=%s,pwh=%s,azlx=%s,zjsl=%s,azrq=%s,zjry=%s,bz=%s where id =%s"
+        args=(shh, pp, pwh, azlx, zjsl, azrq, zjry, bz, id)
+        with SQLPoll() as db:
+            db.execute(sql, args)
         return redirect('../')
 
 
 # 学生信息删除处理函数
 def delete(request):
     id = request.GET.get("id")
-    conn = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
-    with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
-        cursor.execute("DELETE FROM b_zhuangjijilv WHERE id =%s", [id])
-        conn.commit()
+    sql = "DELETE FROM b_zhuangjijilv WHERE id =%s"
+    with SQLPoll() as db:
+        db.execute(sql, id)
     return redirect('../')

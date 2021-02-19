@@ -33,8 +33,8 @@ class SQLPoll(object):
                 # mincached=10,
                 # maxconnections=100,
                 creator=pymysql,  # 使用链接数据库的模块
-                maxconnections=100,  # 连接池允许的最大连接数，0和None表示不限制连接数
-                mincached=10,  # 初始化时，链接池中至少创建的空闲的链接，0表示不创建
+                maxconnections=10,  # 连接池允许的最大连接数，0和None表示不限制连接数
+                mincached=6,  # 初始化时，链接池中至少创建的空闲的链接，0表示不创建
                 maxcached=5,  # 链接池中最多闲置的链接，0和None不限制
                 maxshared=3,
                 # 链接池中最多共享的链接数量，0和None表示全部共享。PS: 无用，因为pymysql和MySQLdb等模块的 threadsafety都为1，所有值无论设置为多少，_maxcached永远为0，所以永远是所有链接都共享。
@@ -84,11 +84,3 @@ class SQLPoll(object):
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.__close()
 
-
-# sql = """select * from b_epos where id > %s"""
-# sql = """select * from b_epos"""
-# sql ="""DELETE FROM b_peixunjieguo WHERE ids =%s """
-# args = (10,)
-# with SQLPoll() as db:
-#     course_list = db.fetch_all(sql,None)
-#     print(course_list)

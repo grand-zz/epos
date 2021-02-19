@@ -1,35 +1,35 @@
 # Create your views here.
-import json
-import MySQLdb
-from random import randrange
+
+from pool import SQLPoll
 import time
 from django.http import HttpResponse
-from pyecharts.commons.utils import JsCode
-from django.shortcuts import render, redirect
-
-from pyecharts.charts import Bar,Page,Pie
+from django.shortcuts import render
+from pyecharts.charts import Page,Pie
 from pyecharts import options as opts
-
 from pyecharts.components import Table
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-import pandas as pd
-from jinja2 import Environment, FileSystemLoader
-from pyecharts.globals import CurrentConfig
-
-# CurrentConfig.ONLINE_HOST ='D:/pyecharts-assets-master/assets/'
-# 'D:/pyecharts-assets-master/assets/'
-# CurrentConfig.GLOBAL_ENV = Environment(loader=FileSystemLoader("./datapage/templates"))
+# from sqlalchemy import create_engine
+# from sqlalchemy.orm import sessionmaker
+# import pandas as pd
+# from pyecharts.globals import CurrentConfig
 
 def table_base(sql,titl) -> Table:
-    # for arg in args:
-    #     print(arg)
     table = Table()
-    engine = create_engine("mysql+pymysql://root:root@localhost:3306/mysql", encoding="utf-8")
-    session = sessionmaker(bind=engine)
-    df = pd.read_sql(sql, engine)
-    rows=df.values.tolist()
-    headers=df.columns.tolist()
+    # engine = create_engine("mysql+pymysql://root:root@localhost:3306/mysql", encoding="utf-8")
+    # session = sessionmaker(bind=engine)
+    # df = pd.read_sql(sql, engine)
+    # rows=df.values.tolist()
+    # headers=df.columns.tolist()
+    with SQLPoll() as db:
+        students = db.fetch_all(sql, None)
+        headers = []
+        for student in students:
+            headers = list(student.keys())
+            break
+        c = []
+        rows = []
+        for student in students:
+            c = list(student.values())
+            rows += [c]
     if len(rows) == 0:
         headers=['记录','数量']
         rows = [['无', 0]]
@@ -40,12 +40,23 @@ def table_base(sql,titl) -> Table:
 
 def Pie_base(sql,titl) -> Pie:
     pie = Pie()
-    engine = create_engine("mysql+pymysql://root:root@localhost:3306/mysql", encoding="utf-8")
-    session = sessionmaker(bind=engine)
-    # sql= "select gzlx as 故障类型,count(1) as 数量 from b_epos where rq BETWEEN '%s' and '%s' group by gzlx"% (rq1, rq2)
-    df = pd.read_sql(sql, engine)
-    rows=df.values.tolist()
-    headers=df.columns.tolist()
+    # engine = create_engine("mysql+pymysql://root:root@localhost:3306/mysql", encoding="utf-8")
+    # session = sessionmaker(bind=engine)
+    # # sql= "select gzlx as 故障类型,count(1) as 数量 from b_epos where rq BETWEEN '%s' and '%s' group by gzlx"% (rq1, rq2)
+    # df = pd.read_sql(sql, engine)
+    # rows=df.values.tolist()
+    # headers=df.columns.tolist()
+    with SQLPoll() as db:
+        students = db.fetch_all(sql, None)
+        headers = []
+        for student in students:
+            headers = list(student.keys())
+            break
+        c = []
+        rows = []
+        for student in students:
+            c = list(student.values())
+            rows += [c]
     if len(rows) == 0:
         rows = [['无', 0]]
     pie.add("", rows)
@@ -55,13 +66,6 @@ def Pie_base(sql,titl) -> Pie:
 
 # def chart(request):
 def zhou(rq1,rq2):
-    # request.encoding = 'utf-8'
-    # if 'rq1' in request.GET and request.GET['rq1']:
-    #     # message = '你搜索的内容为: ' + request.GET['rq1']
-    #     rq1 = request.GET['rq1']
-    #     rq2 = request.GET['rq2']
-    #     rq3 = request.GET['rq3']
-    # print (rq1,rq2,rq3)
     sql1 = '''select pwh as 铺位号,pp as 品牌,gzlx as 故障类型,操作,软件,硬件,其它,操作+软件+硬件+其它 as 合计,rq as 日期,ms as 描述,clr as 处理人 from (select pwh,gzlx,pp,COUNT(if(gzlx='操作',true,null)) as 操作,COUNT(if(gzlx='软件',true,null)) as 软件,COUNT(if(gzlx='硬件',true,null)) as 硬件,COUNT(if(gzlx='其它',true,null)) as 其它,rq,ms,clr from b_epos where rq BETWEEN '%s' and '%s' group by pwh,gzlx,pp,rq,ms,clr) c order by rq,pwh''' % (
         rq1, rq2)
     titl1 = "POS前台收银问题处理汇总\n\n查询日期：%s--%s" % (rq1, rq2)
@@ -115,7 +119,7 @@ def index(request):
             page1=zhou(rq1,rq2)
     return HttpResponse(page1.render_embed())
 # render(request, './datapage/index.html', selet)
-#
+
 def selet(request):
     return render(request, './datapage/selet.html')
 

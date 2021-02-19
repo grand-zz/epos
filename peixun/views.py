@@ -50,7 +50,7 @@ def find(request):
         else:
             pag = 1
         rq1=time.strftime("%Y.%m.%d",time.strptime(rq1,"%Y-%m-%d"))
-        sql ="SELECT id,rq,dph,pp,xm,scfs,xsfs,zf,bz,pxyy,qtbz FROM b_peixunjieguo where rq =%s  ORDER BY rq"
+        # sql ="SELECT id,rq,dph,pp,xm,scfs,xsfs,zf,bz,pxyy,qtbz FROM b_peixunjieguo where rq =%s  ORDER BY rq"
         # conn = pymysql.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
         # cursor = conn.cursor(pymysql.cursors.DictCursor)
         # cursor.execute(

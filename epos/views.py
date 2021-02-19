@@ -3,31 +3,13 @@ from django.shortcuts import render
 # Create your views here.
 ###
 import time
-import MySQLdb
+from pool import SQLPoll
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 
 
 # Create your views here.
 # 故障处理记录处理函数
-
-# def index(request):
-#     rq1 = request.POST.get('rq1')
-#     conn = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
-#     if rq1 is None :
-#         # print(rq1)
-#         with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
-#             cursor.execute("SELECT id,clr,pwh,pp,gzlx,rq,sj,ms,clcs,wczt,syyqm,bz FROM b_epos ORDER BY rq,sj")
-#             students = cursor.fetchall()
-#         return render(request, 'student/index.html', {'students': students})
-#     else:
-#         with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
-#             cursor.execute(
-#                 "SELECT id,clr,pwh,pp,gzlx,rq,sj,ms,clcs,wczt,syyqm,bz FROM b_epos where rq =%s  ORDER BY rq,sj",
-#                 [rq1])
-#             students = cursor.fetchall()
-#         return render(request, 'student/index.html', {'students': students})
-
 
 def index(request):
     request.encoding = 'utf-8'
@@ -37,14 +19,13 @@ def index(request):
     else:
         pag = 1
     rq2=''
-    conn = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
-    with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
-        cursor.execute("SELECT id,clr,pwh,pp,gzlx,rq,sj,ms,clcs,wczt,syyqm,bz FROM b_epos ORDER BY rq,sj")
-        students = cursor.fetchall()
-        p = Paginator(students, 8)
-        students = p.get_page(pag)
-        page_num = p.page_range
-        wz="/epos/?pag="
+    sql='SELECT id,clr,pwh,pp,gzlx,rq,sj,ms,clcs,wczt,syyqm,bz FROM b_epos ORDER BY rq,sj'
+    with SQLPoll() as db:
+        students = db.fetch_all(sql, None)
+    p = Paginator(students, 8)
+    students = p.get_page(pag)
+    page_num = p.page_range
+    wz="/epos/?pag="
     return render(request, 'student/index.html',
                   {
                       'students': students,
@@ -66,23 +47,21 @@ def find(request):
         else:
             pag = 1
         rq1=time.strftime("%Y.%m.%d",time.strptime(rq1,"%Y-%m-%d"))
-        conn = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
-        with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
-            cursor.execute(
-                "SELECT id,clr,pwh,pp,gzlx,rq,sj,ms,clcs,wczt,syyqm,bz FROM b_epos where rq =%s  ORDER BY rq,sj", [rq1])
-            students = cursor.fetchall()
-            p = Paginator(students, 8)
-            students= p.get_page(pag)
-            wz="/epos/find?rq1="+rq2+"&pag="
-            page_num=p.page_range
-            return render(request, 'student/index.html',
-                          {
-                              'students': students,
-                              'wz':wz,
-                              'page_num':page_num,
-                              'rq2':rq2
-                          }
-                          )
+        sql='SELECT id,clr,pwh,pp,gzlx,rq,sj,ms,clcs,wczt,syyqm,bz FROM b_epos where rq =%s  ORDER BY rq,sj'
+        with SQLPoll() as db:
+            students = db.fetch_all(sql, rq1)
+        p = Paginator(students, 8)
+        students= p.get_page(pag)
+        wz="/epos/find?rq1="+rq2+"&pag="
+        page_num=p.page_range
+        return render(request, 'student/index.html',
+                      {
+                          'students': students,
+                          'wz':wz,
+                          'page_num':page_num,
+                          'rq2':rq2
+                      }
+                      )
     else:
         return redirect('../')
 
@@ -103,12 +82,10 @@ def add(request):
         wczt = request.POST.get('wczt', '')
         syyqm = request.POST.get('syyqm', '')
         bz = request.POST.get('bz', '')
-        conn = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
-        with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
-            cursor.execute("INSERT INTO b_epos (clr,pwh,pp,gzlx,rq,sj,ms,clcs,wczt,syyqm,bz) "
-                           "values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
-                           [clr, pwh, pp, gzlx, rq, sj, ms, clcs, wczt, syyqm, bz])
-            conn.commit()
+        sql ="INSERT INTO b_epos (clr,pwh,pp,gzlx,rq,sj,ms,clcs,wczt,syyqm,bz) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        args=(clr, pwh, pp, gzlx, rq, sj, ms, clcs, wczt, syyqm, bz)
+        with SQLPoll() as db:
+            db.execute(sql, args)
         return redirect('../')
 
 
@@ -116,10 +93,9 @@ def add(request):
 def edit(request):
     if request.method == 'GET':
         id = request.GET.get("id")
-        conn = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
-        with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
-            cursor.execute("SELECT id,clr,pwh,pp,gzlx,rq,sj,ms,clcs,wczt,syyqm,bz FROM b_epos where id =%s", [id])
-            student = cursor.fetchone()
+        sql ="SELECT id,clr,pwh,pp,gzlx,rq,sj,ms,clcs,wczt,syyqm,bz FROM b_epos where id =%s"
+        with SQLPoll() as db:
+            student = db.fetch_one(sql, id)
         return render(request, 'student/edit.html', {'student': student})
     else:
         id = request.POST.get('id', '')
@@ -134,20 +110,17 @@ def edit(request):
         wczt = request.POST.get('wczt', '')
         syyqm = request.POST.get('syyqm', '')
         bz = request.POST.get('bz', '')
-        conn = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
-        with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
-            cursor.execute("UPDATE b_epos set clr=%s,pwh=%s,pp=%s,gzlx=%s,rq=%s,sj=%s,ms=%s,clcs=%s,wczt=%s,syyqm=%s,"
-                           "bz=%s where id =%s",
-                           [clr, pwh, pp, gzlx, rq, sj, ms, clcs, wczt, syyqm, bz, id])
-            conn.commit()
+        sql ="UPDATE b_epos set clr=%s,pwh=%s,pp=%s,gzlx=%s,rq=%s,sj=%s,ms=%s,clcs=%s,wczt=%s,syyqm=%s,bz=%s where id =%s"
+        args=(clr, pwh, pp, gzlx, rq, sj, ms, clcs, wczt, syyqm, bz, id)
+        with SQLPoll() as db:
+            db.execute(sql, args)
         return redirect('../')
 
 
 # 学生信息删除处理函数
 def delete(request):
     id = request.GET.get("id")
-    conn = MySQLdb.connect(host="localhost", user="root", passwd="root", db="mysql", charset='utf8')
-    with conn.cursor(cursorclass=MySQLdb.cursors.DictCursor) as cursor:
-        cursor.execute("DELETE FROM b_epos WHERE id =%s", [id])
-        conn.commit()
+    sql = "DELETE FROM b_epos WHERE id =%s"
+    with SQLPoll() as db:
+        db.execute(sql, id)
     return redirect('../')
