@@ -21,15 +21,15 @@ def table_base(sql,titl) -> Table:
     # headers=df.columns.tolist()
     with SQLPoll() as db:
         students = db.fetch_all(sql, None)
-        headers = []
-        for student in students:
-            headers = list(student.keys())
-            break
-        c = []
-        rows = []
-        for student in students:
-            c = list(student.values())
-            rows += [c]
+    headers = []
+    for student in students:
+        headers = list(student.keys())
+        break
+    c = []
+    rows = []
+    for student in students:
+        c = list(student.values())
+        rows += [c]
     if len(rows) == 0:
         headers=['记录','数量']
         rows = [['无', 0]]
@@ -48,15 +48,15 @@ def Pie_base(sql,titl) -> Pie:
     # headers=df.columns.tolist()
     with SQLPoll() as db:
         students = db.fetch_all(sql, None)
-        headers = []
-        for student in students:
-            headers = list(student.keys())
-            break
-        c = []
-        rows = []
-        for student in students:
-            c = list(student.values())
-            rows += [c]
+    headers = []
+    for student in students:
+        headers = list(student.keys())
+        break
+    c = []
+    rows = []
+    for student in students:
+        c = list(student.values())
+        rows += [c]
     if len(rows) == 0:
         rows = [['无', 0]]
     pie.add("", rows)
